@@ -1,0 +1,74 @@
+
+    @font-face {
+        font-family: 'DS-DIGI';
+        src: url('DS-DIGI.TTF');
+    }
+
+    :root {
+        --clockSize: 8rem;
+        --bgColor: #111;
+        --mainColor: #37f;
+        --loadingSize: 0;
+        --dashArray: 876;
+    }
+
+    .box {
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
+
+    .clock-container {
+        background: transparent;
+        margin: 0;
+        padding: 0;
+        width: var(--clockSize);
+        height: var(--clockSize);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .clock-shape {
+        fill: transparent;
+        stroke-width: calc(var(--clockSize) * 0.05);
+        stroke: rgba(255, 255, 255, 0.1);
+        stroke-dasharray: var(--dashArray);
+        stroke-dashoffset: 0;
+        stroke-linecap: round;
+        transition: 1s;
+    }
+
+    .main-circle {
+        stroke: var(--mainColor);
+        stroke-dashoffset: calc(var(--dashArray) - (var(--dashArray) * (var(--loadingSize) / 60)));
+    }
+
+    .content {
+        color: var(--mainColor);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 15px;
+    }
+
+    .sec {
+        animation: secAnimation 1s infinite;
+    }
+
+    @keyframes secAnimation {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @media (max-width: 300px) {
+        :root {
+            --dashArray: 565;
+        }
+    }
